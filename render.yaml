@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: teacher-transfer-portal
+    env: docker
+    plan: free
+    region: ohio # Change to your preferred region
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        sync: false # Render will provide this
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        placeholder: "External Database Host (e.g. Aiven/CleverCloud)"
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_DATABASE
+        placeholder: "Database Name"
+      - key: DB_USERNAME
+        placeholder: "Database User"
+      - key: DB_PASSWORD
+        placeholder: "Database Password"
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: SESSION_DRIVER
+        value: cookie
+      - key: APP_CONFIG_CACHE
+        value: /tmp/config.php
+      - key: APP_ROUTES_CACHE
+        value: /tmp/routes.php
