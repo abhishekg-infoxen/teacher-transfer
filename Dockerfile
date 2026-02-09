@@ -1,5 +1,5 @@
 # Stage 1: Install Composer Dependencies
-FROM php:8.2-fpm-alpine as composer-builder
+FROM php:8.4-fpm-alpine as composer-builder
 RUN apk add --no-cache curl zip unzip
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
@@ -18,7 +18,7 @@ RUN npm install --legacy-peer-deps
 RUN npm run build
 
 # Stage 3: Final PHP Image
-FROM php:8.2-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \
