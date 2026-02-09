@@ -6,7 +6,7 @@ WORKDIR /app
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-scripts --no-autoloader --ignore-platform-reqs
 COPY . .
-RUN composer dump-autoload --no-dev --optimize --no-scripts
+RUN php -v && composer dump-autoload --no-dev --optimize --no-scripts
 
 # Stage 2: Build assets with Node
 FROM node:20-alpine as asset-builder
